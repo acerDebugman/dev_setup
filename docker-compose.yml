@@ -1,0 +1,46 @@
+version: '3.8'
+
+volumes:
+  projects:
+    external: true
+  dump:
+    external: true
+  # https://gist.github.com/devops-school/471f0d11c49142c61b3fae5eb91caf0f
+  # docker volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt o=size=1000m,uid=1000 limitd
+  # limitd:
+  #   external: true
+
+services:
+  zgc_dev_1:
+    image: zgcdev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ulimits:
+      core:
+        soft: -1
+        hard: -1
+    tty: true
+    container_name: zgc_dev_1
+    volumes:
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - .:/workspace:cached
+      # Project volume
+      - projects:/root/workspace/
+      - dump:/mnt/wslg/dumps/
+    # Overrides default command so things don't shut down after the process ends.
+    # entrypoint: /usr/local/share/docker-init.sh
+    command: bash
+    # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    # Uncomment the next line to use a non-root user for all processes.
+    # user: root
+    # Use forwardPorts in **devcontainer.json** to forward an app port locally. 
+    # (Adding the ports property to this file will not forward from a Codespace.)
+
