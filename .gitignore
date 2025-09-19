@@ -1,3 +1,4 @@
 container*
 
 ./docker-compose.yml
+amazon-corretto-8-x64-linux-jdk.tar.gz
