@@ -46,7 +46,7 @@ RUN /root/.cargo/bin/cargo install cargo-make
 
 # 安装最新版 Go
 # 设置变量（可修改为其他版本）
-ENV GO_VERSION=1.23.0
+ENV GO_VERSION=1.24.0
 ENV GO_ARCH=linux-amd64
 
 # 下载并安装 Go
