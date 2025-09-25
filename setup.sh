@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NUM_CONTAINERS=1
-CONTAINER_PREFIX=zgc_dev_
+CONTAINER_PREFIX=zgcdev
 
 docker volume create projects
 docker volume create dump
