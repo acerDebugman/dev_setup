@@ -13,6 +13,7 @@
        #- CARGO_TARGET_DIR=/app/taosx/target2
        #- DATABASE_URL=sqlite:/app/taosx/target2/taosx.dev.db
        - GOPROXY=https://goproxy.cn,direct
+       - DATABASE_URL=sqlite:/app/taosx/target/taosx.dev.db
     volumes:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
