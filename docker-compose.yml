@@ -20,8 +20,9 @@ services:
         hard: -1
     tty: true
     container_name: zgcdev1
+    network_mode: "host"
     environment:
-       - CARGO_TARGET_DIR=/app/taosx/target2
+       #- CARGO_TARGET_DIR=/app/taosx/target2
        #- DATABASE_URL=sqlite:/app/taosx/target2/taosx.dev.db
        - DATABASE_URL=sqlite:/app/taosx/target/taosx.dev.db
        - GOPROXY=https://goproxy.cn,direct
